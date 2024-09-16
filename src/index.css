@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20vh);
+    visibility: hidden;
+    transition: opacity 1200ms ease-out, transform 600ms ease-out,
+      visibility 1200ms ease-out;
+    will-change: opacity, transform, visibility;
+  }
+  
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+  @keyframes smooth-bounce {
+    0%, 100% {
+      transform: translateY(0);
+      animation-timing-function: ease-in-out;
+    }
+    20% {
+      transform: translateY(-15px);
+      animation-timing-function: ease-in-out;
+    }
+    40% {
+      transform: translateY(-5px);
+      animation-timing-function: ease-in-out;
+    }
+    60% {
+      transform: translateY(-25px);
+      animation-timing-function: ease-in-out;
+    }
+    80% {
+      transform: translateY(-15px);
+      animation-timing-function: ease-in-out;
+    }
+  }
+  
+  .animate-smooth-bounce {
+    animation: smooth-bounce 2s infinite;
+  }
+
+  /* Define keyframes for the flashing background */
+@keyframes flashBackground {
+  0% { background-color: rgba(255, 0, 0, 0.2); }
+  25% { background-color: rgba(0, 255, 0, 0.2); }
+  50% { background-color: rgba(0, 0, 255, 0.2); }
+  75% { background-color: rgba(255, 255, 0, 0.2); }
+  100% { background-color: rgba(255, 0, 255, 0.2); }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Apply the animation to the section's background */
+.animated-background {
+  animation: flashBackground 5s infinite;
+  background-size: cover;
 }
