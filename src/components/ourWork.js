@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const works = [
   { 
@@ -21,7 +21,12 @@ const works = [
   }
 ];
 
-const WorkCard = ({ work }) => {
+const ecommerceStores = [
+  { name: "Pride & Pinion", url: "https://prideandpinion.com/" },
+  { name: "Savile Row Company", url: "https://savilerowco.com/" }
+];
+
+const WorkCard = ({ work, height }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
@@ -31,7 +36,7 @@ const WorkCard = ({ work }) => {
   return (
     <div 
       className="bg-white border-2 border-black shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-[1.02] hover:shadow-xl relative"
-      style={{ height: '500px', width: '100%' }}
+      style={{ height: `${height}px`, width: '100%' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -53,7 +58,6 @@ const WorkCard = ({ work }) => {
           className="w-full h-full border-none"
         />
       </div>
-      {/* Clickable overlay */}
       <div 
         className="absolute inset-0 z-30 cursor-pointer" 
         onClick={handleClick}
@@ -63,16 +67,58 @@ const WorkCard = ({ work }) => {
 };
 
 const OurWork = () => {
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [cardHeight, setCardHeight] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Calculate card height: window height minus space for h2 and some padding
+    const newCardHeight = windowHeight - 200; // Adjust 200 as needed
+    setCardHeight(newCardHeight);
+  }, [windowHeight]);
+
   return (
-    <div className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center bg-[#dedcff] border-black border-b-4">
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col justify-between min-h-screen">
-        <h2 className="text-5xl md:text-6xl font-heading text-black mb-16 text-center">
+    <div className="relative w-full bg-[#dedcff] border-black border-b-4">
+      <div 
+        className="w-full flex flex-col items-center"
+        style={{ minHeight: `${windowHeight}px` }}
+      >
+        <h2 className="text-5xl md:text-6xl font-heading text-black mt-12 mb-12 text-center">
           Our Work
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="w-full max-w-7xl mx-auto px-6 pb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {works.map((work) => (
-            <WorkCard key={work.id} work={work} />
+            <WorkCard key={work.id} work={work} height={cardHeight} />
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col items-center">
+        <div className="bg-white border-2 border-black rounded-lg py-3 px-6 inline-block transform transition duration-300 hover:scale-[1.02] hover:shadow-xl mb-6">
+          <p className="text-2xl font-semibold">
+            E-commerce stores
+          </p>
+        </div>
+        <div className="flex justify-center space-x-4">
+          {ecommerceStores.map((store, index) => (
+            <a
+              key={index}
+              href={store.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black text-white py-3 px-6 rounded-lg inline-block transform transition duration-300 hover:scale-[1.02] hover:shadow-xl"
+            >
+              <span className="text-xl font-semibold">{store.name}</span>
+            </a>
           ))}
         </div>
       </div>

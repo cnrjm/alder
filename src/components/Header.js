@@ -1,8 +1,6 @@
 import React from 'react';
-import Lottie from 'lottie-react';
-import fishingAnimation from '../Fishing.json';
 
-const Header = ({ onFishingClick }) => {
+const Header = () => {
   const randomVerticalPosition = () => `${Math.random() * 100}%`;
   const randomSize = () => 0.5 + Math.random() * 0.5;
 
@@ -25,18 +23,6 @@ const Header = ({ onFishingClick }) => {
         <h1 className="text-8xl md:text-9xl lg:text-[10rem] font-heading text-black px-6 py-2 text-center">
           ALDER PARK
         </h1>
-        <div className="w-full h-2 z-20 bg-black"></div>
-      </div>
-      <div 
-        className="relative z-10 cursor-pointer"
-        onClick={onFishingClick}
-      >
-        <Lottie
-          animationData={fishingAnimation}
-          loop={true}
-          autoplay={true}
-          style={{ width: 150, height: 150, display: 'block', marginTop: '-5px' }}
-        />
       </div>
       <style jsx>{`
         .cloud {

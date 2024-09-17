@@ -24,7 +24,7 @@ const OurContactDetails = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col py-8">
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-black mb-8 text-center">Contact Us</h2>
         <div className="flex flex-col lg:flex-row gap-8">
-          <div className="lg:w-1/2 flex flex-col justify-center items-center bg-white border-2 border-black shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-[1.01] hover:shadow-xl text-center mb-8 lg:mb-0">
+          <div className="lg:w-1/2 flex flex-col justify-center items-center bg-white border-2 border-black shadow-lg rounded-lg p-6 transform transition duration-300 hover:scale-[1.02] hover:shadow-xl text-center mb-8 lg:mb-0">
             <div className="space-y-6">
               <p className="text-xl sm:text-2xl text-black">
                 If you'd like more information you can contact us directly:
@@ -61,7 +61,7 @@ const OurContactDetails = () => {
             </div>
           </div>
           <div className="lg:w-1/2">
-            <form className="bg-white border-2 border-black shadow-lg rounded-lg p-6 flex flex-col justify-between transform transition duration-300 hover:scale-[1.01] hover:shadow-xl">
+            <form className="bg-white border-2 border-black shadow-lg rounded-lg p-6 flex flex-col justify-between transform transition duration-300 hover:scale-[1.02] hover:shadow-xl">
               <div className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-lg font-semibold mb-2">Name or Business</label>
