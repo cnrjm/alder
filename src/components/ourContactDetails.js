@@ -31,7 +31,7 @@ const OurContactDetails = () => {
               </p>
               <div className="py-4 px-6 bg-black text-white rounded-lg inline-block">
                 <p className="text-2xl sm:text-3xl font-bold mb-2">
-                  hello@alderpark.com
+                  hello@alderpark.uk
                 </p>
                 <p className="text-2xl sm:text-3xl font-bold">
                   (+44) 07754 210 973
